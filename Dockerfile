@@ -3,7 +3,7 @@ MAINTAINER "Christian Kniep <christian@qnib.org>"
 
 ## Kibana
 WORKDIR /opt/
-ENV KIBANA_VER 4.0.1
+ENV KIBANA_VER 4.0.2
 RUN curl -s -L -o kibana-${KIBANA_VER}-linux-x64.tar.gz https://download.elasticsearch.org/kibana/kibana/kibana-${KIBANA_VER}-linux-x64.tar.gz && \
     tar xf kibana-${KIBANA_VER}-linux-x64.tar.gz && \
     rm /opt/kibana*.tar.gz
