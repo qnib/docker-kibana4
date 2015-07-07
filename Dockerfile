@@ -1,10 +1,10 @@
-FROM qnib/terminal
+FROM qnib/terminal:light
 MAINTAINER "Christian Kniep <christian@qnib.org>"
 
 ## Kibana
 WORKDIR /opt/
-ENV KIBANA_VER 4.0.2
-RUN curl -s -L -o kibana-${KIBANA_VER}-linux-x64.tar.gz https://download.elasticsearch.org/kibana/kibana/kibana-${KIBANA_VER}-linux-x64.tar.gz && \
+ENV KIBANA_VER 4.1.1
+RUN curl -s -L -o kibana-${KIBANA_VER}-linux-x64.tar.gz https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VER}-linux-x64.tar.gz &&\
     tar xf kibana-${KIBANA_VER}-linux-x64.tar.gz && \
     rm /opt/kibana*.tar.gz
 RUN ln -sf /opt/kibana-${KIBANA_VER}-linux-x64 /opt/kibana
