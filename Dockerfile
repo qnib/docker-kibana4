@@ -1,5 +1,4 @@
-FROM qnib/terminal:light
-MAINTAINER "Christian Kniep <christian@qnib.org>"
+FROM qnib/terminal
 
 ## Kibana
 WORKDIR /opt/
