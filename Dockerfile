@@ -13,8 +13,9 @@ ADD etc/consul.d/check_kibana.json /etc/consul.d/check_kibana.json
 # Config kibana
 ADD opt/kibana/config/kibana.yml /opt/kibana/config/kibana.yml
 ## Dashboard
-RUN yum clean all;yum install -y npm jq bc 
-RUN npm install elasticdump -g
-ADD etc/supervisord.d/kibana_restore.ini /etc/supervisord.d/
-ADD opt/qnib/bin/kibana_restore.sh /opt/qnib/bin/
-ADD dumps/ /opt/kibana4_dumps/
+RUN yum install -y jq bc 
+#RUN yum install -y npm && \
+#    npm install elasticdump -g
+#ADD etc/supervisord.d/kibana_restore.ini /etc/supervisord.d/
+#ADD opt/qnib/bin/kibana_restore.sh /opt/qnib/bin/
+#ADD dumps/ /opt/kibana4_dumps/
