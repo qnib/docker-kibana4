@@ -2,8 +2,9 @@ FROM qnib/terminal
 
 ## Kibana
 WORKDIR /opt/
-ENV KIBANA_VER 4.1.1
-RUN curl -s -L -o kibana-${KIBANA_VER}-linux-x64.tar.gz https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VER}-linux-x64.tar.gz &&\
+ENV KIBANA_VER 4.4.1
+RUN curl -slf https://download.elastic.co/kibana/kibana/kibana-4.4.1-linux-x86.tar.gz | tar xfz - -C /opt/
+RUN curl -s -L -o kibana-${KIBANA_VER}-linux-x64.tar.gz https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VER}-linux-x64.tar.gz && \
     tar xf kibana-${KIBANA_VER}-linux-x64.tar.gz && \
     rm /opt/kibana*.tar.gz
 RUN ln -sf /opt/kibana-${KIBANA_VER}-linux-x64 /opt/kibana
