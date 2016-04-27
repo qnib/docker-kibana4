@@ -9,6 +9,7 @@ RUN dnf install -y npm \
  && npm install elasticdump -g
 ADD etc/supervisord.d/kibana4_restore.ini /etc/supervisord.d/
 ADD opt/qnib/kibana4/bin/restore.sh \
+    opt/qnib/kibana4/bin/backup.sh \
     opt/qnib/kibana4/bin/start.sh \
     /opt/qnib/kibana4/bin/
 ## Kibana
