@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ES_HOST=${ES_HOST-elasticsearch.service.consul}
+
 if [ ! -f /opt/qnib/kibana4/dumps/new_mapping.json ];then
     elasticdump \
         --type=mapping \
