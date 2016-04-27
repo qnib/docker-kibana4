@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 source /opt/qnib/consul/etc/bash_functions.sh
 wait_for_srv elasticsearch
