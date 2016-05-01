@@ -1,9 +1,9 @@
-FROM qnib/terminal
+FROM qnib/syslog
 
 ENV KIBANA_SERVER_PORT=5601
     
 ## Dashboard
-RUN dnf install -y npm \
+RUN dnf install -y npm nmap \
  && npm install -g n \
  && n stable \
  && npm install elasticdump -g
