@@ -8,7 +8,7 @@ RUN dnf install -y npm nmap \
  && n stable \
  && npm install elasticdump -g
 ## Kibana
-ENV KIBANA_VER=4.5.0
+ENV KIBANA_VER=4.5.4
 RUN dnf install -y jq bc https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VER}-1.x86_64.rpm
 ADD opt/qnib/kibana4/bin/restore.sh \
     opt/qnib/kibana4/bin/backup.sh \
