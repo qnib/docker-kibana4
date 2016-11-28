@@ -1,56 +1,53 @@
-consul:
+version: '2'
+services:
+  consul:
     image: qnib/alpn-consul
     hostname: consul
     container_name: consul
+    networks:
+     - es-net
     ports:
-     - 8500
+     - 8500:8500
     environment:
-     - DC_NAME=dc1
      - CONSUL_BOOTSTRAP_EXPECT=1
-    dns: 127.0.0.1
 
-elasticsearch:
+  elasticsearch:
     image: qnib/alpn-elasticsearch
-    dns: 127.0.0.1
     hostname: elasticsearch
     container_name: elasticsearch
+    networks:
+     - es-net
     ports:
      - "9200:9200"
     environment:
-     - DC_NAME=dc1
+     - CONSUL_CLUSTER_IPS=consul
      - FORWARD_TO_ELASTICSEARCH=true
      - COLLECT_METRICS=false
-     - SKIP_PSWATCH=true
-    links:
-     - consul:consul
-    privileged: true
 
-kopf:
+  kopf:
     image: qnib/kopf
     hostname: kopf
     container_name: kopf
     environment:
-     - DC_NAME=dc1
-    dns: 127.0.0.1
+     - CONSUL_CLUSTER_IPS=consul
+    networks:
+     - es-net
     ports:
      - 8088:80
-    links:
-     - consul:consul
 
-kibana4:
-  hostname: kibana4
-  container_name: kibana4
-  image: qnib/kibana4
-  ports:
-   - "5601:5601"
-  environment:
-  - DC_NAME=dc1
-  - FORWARD_TO_LOGSTASH=false
-  - CNT_TYPE=service
-  - SKIP_PSWATCH=true
-  - COLLECT_METRICS=false
-  - HTTPPORT=9200
-  dns: 127.0.0.1
-  privileged: true
-  links:
-  - consul:consul
+  kibana4:
+    hostname: kibana4
+    container_name: kibana4
+    image: qnib/alpn-kibana4
+    networks:
+     - es-net
+    ports:
+     - "5601:5601"
+    environment:
+     - CONSUL_CLUSTER_IPS=consul
+     - COLLECT_METRICS=false
+     - HTTPPORT=9200
+     - ES_URL=elasticsearch:9200
+
+networks:
+  es-net:
